@@ -5,7 +5,11 @@ https://www.bilibili.com/video/BV1whaqzzEK8/
 
 【从内容采集到智能搜索】Milvus Attu图形用户界面可视化管理工具操作指南，创建数据库、定义Schema、创建索引、创建集合、上传本地文件导入数据               
 https://youtu.be/SaMb4kA7OT0                  
-https://www.bilibili.com/video/BV1sPafzqEEQ/                       
+https://www.bilibili.com/video/BV1sPafzqEEQ/                         
+
+【从内容采集到智能搜索】N8N低代码平台实现全自动公众号文章内容采集工作流并使用AI Agent自动生成内容摘要        
+https://youtu.be/bHjI5U3ETLU               
+
 
 AI在企业应用的不尽如人意，不仅仅在于工程上的高要求，也在于开发者往往容易沉浸于某些技术细节，却忽视真实场景的复杂性       
 以看似简单的AI内容搜索为例，用户的需求远非“搜索下关于AI智能体的文章”这样的单维问题，靠着“知识库+向量+LLM”可以轻松解决              
