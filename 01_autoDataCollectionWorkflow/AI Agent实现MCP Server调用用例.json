@@ -1,0 +1,174 @@
+{
+  "name": "AI Agent实现MCP Server调用用例",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        48,
+        80
+      ],
+      "id": "fb21abe8-1e26-4884-b48a-19a826cc5878",
+      "name": "When chat message received",
+      "webhookId": "e5be7eb9-8984-43ca-8e7e-6a5368173d07"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "id": "6c0de3c9-a8ea-495c-bf72-9c20e63792df",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        272,
+        304
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "IGMb1IDNL9WbBrhe",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "id": "048f3eaa-e342-458f-998d-d3097d2dd31a",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        392,
+        80
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        400,
+        304
+      ],
+      "id": "cc2fbffa-e833-4e56-ba08-1a1ba73a712f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://mcp.amap.com/sse?key=848ae2b19dd64a65e5b0757",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        528,
+        304
+      ],
+      "id": "a0300814-401e-44ee-8033-8d512a475f1f",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"city\": \"北京\",\n\t\"detail\": \"天气详情\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        304
+      ],
+      "id": "a3c2f72b-890f-45b3-9cb3-b7462ab1fd85",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6f705dea-afed-4c27-a2dc-4159e9804260",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b9060bab370697f2a8237e720941b137190f65b44caa206af82a940007f827f3"
+  },
+  "id": "UAFODfNuRtiv7wg4",
+  "tags": [
+    {
+      "createdAt": "2025-09-08T01:45:14.638Z",
+      "updatedAt": "2025-09-08T01:45:14.638Z",
+      "id": "9aEucc6YTN0gUyBg",
+      "name": "Basic"
+    }
+  ]
+}
